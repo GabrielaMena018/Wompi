@@ -104,7 +104,7 @@ export function createRegisterController(role) {
             await newUser.save();
 
             res.clearCookie("registrationCookie");
-            return res.status(201).json({ message: `${decodedRole} registered` });
+            return res.status(200).json({ message: `${decodedRole} registered` });
         } catch (error) {
             console.log("error" + error);
             return res.status(500).json({ message: "Internal Server Error" });
