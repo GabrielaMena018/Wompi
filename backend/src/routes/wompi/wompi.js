@@ -1,8 +1,8 @@
 import express from "express";
-import wompiController from "../../controllers/wompiController";
-import router from "../admins/RegsiterAdmin";
+import wompiController from "../../controllers/wompiController.js";
 
-const route = express.Router();
+
+const router = express.Router();
 router.route("/token").post(wompiController.generarToken)
 router.route("paymentTest").post(wompiController.paymentTest)
 
