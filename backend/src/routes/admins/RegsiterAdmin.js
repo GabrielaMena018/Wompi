@@ -1,9 +1,9 @@
 import express from "express";
-import registerAdminController from "../../controllers/RegisterAdminController";
+import registerAdminController from "../../controllers/RegisterAdminController.js";
 
 const router = express.Router();
 
-router.route("/").post(registerAdminController.register)
-router.route("/VerifiCode").post(registerAdminController.verifyCode)
+router.route("/register").post(registerAdminController.register)
+router.route("/verify-code").post(registerAdminController.verifyCode)
 
 export default router;

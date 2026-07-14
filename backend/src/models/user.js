@@ -11,16 +11,16 @@
 import mongoose, {Schema, model} from "mongoose";
 const userSchema = new Schema({
 
-    name: {type: String},
-    email: {type: String},
-    password: {type: String},
-    isVerified: {type: Boolean},
-    loginAttempts:{type: Number},
-    timeOut: {type: Number}
+    name: {type: String, required: true},
+    email: {type: String, required: true, unique: true},
+    password: {type: String, required: true},
+    role: {type: String, enum: ["customer", "admin"], required: true},
+    isVerified: {type: Boolean, default: false},
+    loginAttempts:{type: Number, default: 0},
+    timeOut: {type: Number, default: 0}
 
 }, {
-    timestamps: true,
-    strict: false
+    timestamps: true
 })
 
 export default model("Users", userSchema)

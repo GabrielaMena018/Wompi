@@ -1,8 +1,11 @@
-import express from "exxpress";
+import express from "express";
 import cookieParser from "cookie-parser"
 import cors from "cors"
 
-//Libreria express 
+import adminRegisterRoutes from "./src/routes/admins/RegsiterAdmin.js"
+import customerRegisterRoutes from "./src/routes/customers/RegisterCustomer.js"
+
+//Libreria express
 const app = express()
 
 app.use(cors({
@@ -14,8 +17,8 @@ app.use(cookieParser())
 
 app.use(express.json())
 
-
-
+app.use("/api/admins", adminRegisterRoutes)
+app.use("/api/customers", customerRegisterRoutes)
 
 
 export default app;
