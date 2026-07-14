@@ -16,8 +16,8 @@ const userSchema = new Schema({
     password: {type: String},
     role: {type: String, enum: ["customer", "admin"]},
     isVerified: {type: Boolean},
-    loginAttempts:{type: Number},
-    timeOut: {type: Boolean}
+    loginAttempts:{type: Number, default: 0},
+    timeOut: {type: Date, default: null}
 
 }, {
     timestamps: true

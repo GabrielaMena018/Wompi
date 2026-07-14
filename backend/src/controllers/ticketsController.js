@@ -8,7 +8,7 @@
 
  */
 
-import ticketsModel from "../models/tickets";
+import ticketsModel from "../models/tickets.js";
 
 //Array de funciones
 const ticketsController = {};
@@ -56,3 +56,53 @@ ticketsController.insertTickets = async (req, res) => {
 
 
 }
+
+//UPDATE
+ticketsController.updateTickets = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const {
+            customerId,
+            quantity,
+            purchaseDate,
+            total,
+            paymentStatus,
+            transactionId
+        } = req.body;
+
+        const updatedTickets = await ticketsModel.findByIdAndUpdate(
+            id,
+            { customerId, quantity, purchaseDate, total, paymentStatus, transactionId },
+            { new: true }
+        );
+
+        if (!updatedTickets) {
+            return res.status(404).json({ message: "Compra no encontrada" });
+        }
+
+        return res.status(200).json(updatedTickets)
+    } catch (error) {
+        console.log("error" + error)
+        return res.status(500).json({message: "Interal server error"})
+    }
+}
+
+//DELETE
+ticketsController.deleteTickets = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const deletedTickets = await ticketsModel.findByIdAndDelete(id);
+
+        if (!deletedTickets) {
+            return res.status(404).json({ message: "Compra no encontrada" });
+        }
+
+        return res.status(200).json({ message: "Compra eliminada correctamente" })
+    } catch (error) {
+        console.log("error" + error)
+        return res.status(500).json({message: "Interal server error"})
+    }
+}
+
+export default ticketsController;
