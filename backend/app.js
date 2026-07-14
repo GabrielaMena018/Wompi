@@ -20,6 +20,6 @@ app.use(express.json())
 
 app.use("/api/admins", adminRegisterRoutes)
 app.use("/api/customers", customerRegisterRoutes)
-appuse("/api/wompi", wompiRoutes)
+app.use("/api/wompi", wompiRoutes)
 
 export default app;
